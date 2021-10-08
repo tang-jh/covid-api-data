@@ -23,7 +23,7 @@ const Datacard = () => {
 
     return (
       <div>
-        <p>{`Country: ${info.All.country}, Population: ${info.All.population}`}</p>
+        <p>{`Country: ${info?.All?.country}, Population: ${info?.All?.population}`}</p>
       </div>
     );
 }
