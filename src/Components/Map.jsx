@@ -10,11 +10,13 @@ import {
 import geodata from "../Data/50m_admin0";
 
 const Map = () => {
-    const country = geodata.features.filter(item=> item.properties.NAME_EN === "Singapore");
+    
+
+    const country = (geodata.features.filter(item=> item.properties.NAME_EN === "Malaysia"))[0];
     console.log("geodata", geodata);
     console.log("geodata", geodata.features);
     console.log("geodata.features", geodata.features[5].properties.NAME_EN);
-    console.log("bbox", country[0].bbox)
+    // console.log("bbox", country[0].bbox)
     console.log("country", country)
     return (
       <div id="map">
@@ -36,7 +38,7 @@ const Map = () => {
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>
           </Marker>
-          <GeoJSON data={country} bounds={country[0].bbox} />
+          <GeoJSON data={country}/>
           {/* <Polygon pathOptions={purple} positions={mys[0].geometry} /> */}
         </MapContainer>
       </div>
