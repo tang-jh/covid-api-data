@@ -38,12 +38,12 @@ function App() {
           </Grid>
         </Grid>
         <Grid container spacing={1}>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Sidebar items={appdata} />
           </Grid>
-          <Grid item s={9}>
+          <Grid item s={10}>
             <Grid container spacing={2}>
-              <Grid item xs={9}>
+              <Grid item xs={10}>
                 <Map />
                 <Datacard />
               </Grid>

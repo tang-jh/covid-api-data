@@ -1,4 +1,8 @@
 .leaflet-container{
   height: 500px;
-  width: 500px
+  width: 500px;
+}
+
+.leaflet-tile-pane {
+  filter: grayscale(1);
 }

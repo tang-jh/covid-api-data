@@ -7,38 +7,38 @@ import {
   Popup,
   GeoJSON
 } from "react-leaflet";
+import L from "leaflet";
 import geodata from "../Data/50m_admin0";
 
 const Map = () => {
     
 
-    const country = (geodata.features.filter(item=> item.properties.NAME_EN === "Malaysia"))[0];
+    // const country = (geodata.features.filter(item=> item.properties.NAME_EN === /China/))[0];
+    const country = geodata.features.filter((item) =>
+      item.properties.NAME_EN.match(/india/i)
+    )[0];
+    console.log("bbox", L.geoJSON(country).getBounds());  
     console.log("geodata", geodata);
     console.log("geodata", geodata.features);
-    console.log("geodata.features", geodata.features[5].properties.NAME_EN);
-    // console.log("bbox", country[0].bbox)
     console.log("country", country)
     return (
       <div id="map">
         <MapContainer
-        //   center={[100.29027, 103.851959]}
-          bounds={[
-            [1.265,103.65],
-            [1.447,103.996],
-        ]}
+          //   center={[100.29027, 103.851959]}
+          bounds={L.geoJSON(country).getBounds()}
           zoom={2}
           scrollWheelZoom={true}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[1.29027, 103.851959]}>
+          <GeoJSON data={country} pathOptions={{ color: "#ff6d00" }}>
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              {`Formal name: ${country.properties.FORMAL_EN}`} <br />
+              {`ISO A2: ${country.properties.ISO_A2}`}
             </Popup>
-          </Marker>
-          <GeoJSON data={country}/>
+          </GeoJSON>
           {/* <Polygon pathOptions={purple} positions={mys[0].geometry} /> */}
         </MapContainer>
       </div>

@@ -38,6 +38,17 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 - Chart
     - TBC
 
+### App method
+
+- Selecting country
+    - Use ISO_A2 for unambiguity
+    - Searchbar with controlled onChange listener to filter the list of selectable countries
+
+- Bounding box
+    - When a country is selected, map should zoom to bbox value from geoJSON
+
+- Routing
+    - App routing to be based on **ISO A2**
 
 
 ## Wireframe
