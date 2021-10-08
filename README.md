@@ -6,6 +6,40 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 
 ## Methods
 
+### Components List
+
+|Component|Contains|ChildOf|
+|---------|--------|-------|
+|App|header, Sidebar, InfoBoard|none|
+|Sidebar|searchbar, countries[props]|App|
+|InfoBoard|Map, InfoCard, Chart|App|
+|Map|mapcontainer, geojson[local data, state data]|InfoBoard|
+|InfoCard|countrydata[api data, props.filter]|InfoBoard|
+|Chart|countrydata[api data, props.filter]|Infoboard|
+
+### Represented data
+
+- Sidebar
+    - list of countries derived from COVID-19 api countries list
+
+- InfoCard
+    - Country info from COVID-19 api
+        - Country name
+        - Population
+        - Area
+        - Confirmed cases
+        - Death cases
+        - Last updated
+
+- Map 
+    - Baselayer from OpenStreetMap
+    - Vector layer from processed geojson data derived from NaturalEarthData @50m_admin_0 level
+
+- Chart
+    - TBC
+
+
+
 ## Wireframe
 
 ![Wireframe Design](./wireframes/Mockup.jpg)
@@ -41,3 +75,7 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 ## Acknowledgements
 
 Data is retrieved from [Covid-19-API](https://github.com/M-Media-Group/Covid-19-API)
+
+Supplementary geodata is obtained from [natural-earth-vector github repo](https://github.com/nvkelso/natural-earth-vector). 
+
+Map base layer is served from [OpenStreetMap](https://www.openstreetmap.org/)
