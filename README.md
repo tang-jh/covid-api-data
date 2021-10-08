@@ -35,7 +35,7 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 |Project setup||:heavy_check_mark:||
 |Planning and Wireframing||:heavy_check_mark:||
 |API quick test||:heavy_check_mark:||
-|Build core components|:heavy_check_mark:|||
+|Build core components||:heavy_check_mark:||
 
 
 ## Acknowledgements
