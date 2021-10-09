@@ -1,9 +1,10 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { CssBaseline, Grid } from "@mui/material";
-import Datacard from "./Components/Datacard";
+import Infocard from "./Components/Infocard";
 import Map from './Components/Map';
 import Sidebar from "./Components/Sidebar";
+import Chart from "./Components/Chart";
 
 const CASES = "cases";
 const HISTORY = "history";
@@ -21,7 +22,6 @@ function App() {
       try {
         const res = await fetch(`${COVID_API}${CASES}`);
         const json = await res.json();
-        console.log(Object.keys(json));
         setAppData(Object.keys(json));
       } catch (error) {
         setStatus("error");
@@ -33,7 +33,7 @@ function App() {
     <CssBaseline>
       <div className="App">
         <Grid container justifyContent="center" spacing={2}>
-          <Grid item s={12}>
+          <Grid item>
             <h1>COVID-19 API Data</h1>
           </Grid>
         </Grid>
@@ -45,11 +45,28 @@ function App() {
             <Grid container spacing={2}>
               <Grid item xs={10}>
                 <Map />
-                <Datacard />
+                <Infocard />
+                <Chart />
               </Grid>
             </Grid>
           </Grid>
         </Grid>
+        {/* <Grid
+          container
+          spacing={1}
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="center"
+        >
+          <Grid item s={3} sx={{maxHeight: 800}}>
+            <Sidebar items={appdata} />
+          </Grid>
+          <Grid item s={9}>
+            <Map />
+            <Infocard />
+            <Chart />
+          </Grid>
+        </Grid> */}
       </div>
     </CssBaseline>
   );

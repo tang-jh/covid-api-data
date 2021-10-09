@@ -17,10 +17,10 @@ const Map = () => {
     const country = geodata.features.filter((item) =>
       item.properties.NAME_EN.match(/india/i)
     )[0];
-    console.log("bbox", L.geoJSON(country).getBounds());  
-    console.log("geodata", geodata);
-    console.log("geodata", geodata.features);
-    console.log("country", country)
+    // console.log("bbox", L.geoJSON(country).getBounds());  
+    // console.log("geodata", geodata);
+    // console.log("geodata", geodata.features);
+    // console.log("country", country)
     return (
       <div id="map">
         <MapContainer

@@ -41,7 +41,7 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 ### App method
 
 - Selecting country
-    - Use ISO_A2 for unambiguity
+    - Use `ISO_A2` for unambiguity
     - Searchbar with controlled onChange listener to filter the list of selectable countries
 
 - Bounding box

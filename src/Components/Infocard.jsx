@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-const Datacard = () => {
+const Infocard = () => {
 
     const APIADD = `https://covid-api.mmediagroup.fr/v1/cases?ab=sg`;
 
@@ -13,7 +13,7 @@ const Datacard = () => {
             const res = await fetch(APIADD);
             const data = await res.json();
             setStatus("resolved");
-            console.log(data)
+            // console.log(data)
             setInfo(data);
         } catch(error) {
             setStatus("error");
@@ -28,4 +28,4 @@ const Datacard = () => {
     );
 }
 
-export default Datacard
+export default Infocard
