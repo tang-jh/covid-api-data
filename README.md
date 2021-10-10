@@ -35,10 +35,11 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 
 - Map 
     - Baselayer from OpenStreetMap
-    - Vector layer from processed geojson data derived from NaturalEarthData @50m_admin_0 level
+    - Vector layer from processed geojson data derived from NaturalEarthData `@50m_admin_0 level`
 
 - Chart
-    - TBC
+    - Linechart for country's history of confirmed/death cases
+    - Piechart for country's percentage population of vaccinated individuals
 
 ### App method
 
@@ -76,6 +77,7 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 |[React](https://reactjs.org/)|JS frontend library|
 |[Leaflet](https://leafletjs.com/)|JS library for maps|
 |[React-leaflet](https://react-leaflet.js.org/)|React component library|
+|[Recharts](https://recharts.org/en-US/)|React charting component library|
 |[Covid-19-API](https://github.com/M-Media-Group/Covid-19-API)|Datasource API|
 
 ## Workplan
@@ -105,6 +107,8 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 |Build Map||:heavy_check_mark:||
 |Build Infocard|:heavy_check_mark:|||
 |Build Landing page (global map infographic)|:heavy_check_mark:|||
+|Build Chart (history linechart)||:heavy_check_mark:||
+Build Chart (vaccination piechart)|:heavy_check_mark:|||
 
 
 ## Acknowledgements
