@@ -1,17 +1,12 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
+import {Container, List, ListItem, ListItemButton,ListItemText, Box} from "@mui/material";
 // import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Container from "@mui/material/Container";
 
 const Sidebar = (props) => {
 
   return (
-    <Container maxWidth="sm">
-      <Box>
+    // <Container maxWidth="sm">
+    //   <Box>
         <List>
           {props.items.map((item) => (
             <ListItem disablePadding>
@@ -21,8 +16,8 @@ const Sidebar = (props) => {
             </ListItem>
           ))}
         </List>
-      </Box>
-    </Container>
+    //   </Box>
+    // </Container>
   );
 };
 

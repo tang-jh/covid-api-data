@@ -3,7 +3,6 @@ import React from "react";
 import {
   MapContainer,
   TileLayer,
-  Marker,
   Popup,
   GeoJSON
 } from "react-leaflet";
@@ -15,12 +14,12 @@ const Map = () => {
 
     // const country = (geodata.features.filter(item=> item.properties.NAME_EN === /China/))[0];
     const country = geodata.features.filter((item) =>
-      item.properties.NAME_EN.match(/india/i)
+      item.properties.NAME_EN.match(/china/i)
     )[0];
     // console.log("bbox", L.geoJSON(country).getBounds());  
     // console.log("geodata", geodata);
     // console.log("geodata", geodata.features);
-    // console.log("country", country)
+    console.log("country", country)
     return (
       <div id="map">
         <MapContainer

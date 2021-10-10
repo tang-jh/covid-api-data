@@ -10,12 +10,14 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 
 |Component|Contains|ChildOf|
 |---------|--------|-------|
-|App|header, Sidebar, InfoBoard|none|
-|Sidebar|searchbar, countries[props]|App|
-|InfoBoard|Map, InfoCard, Chart|App|
-|Map|mapcontainer, geojson[local data, state data]|InfoBoard|
-|InfoCard|countrydata[api data, props.filter]|InfoBoard|
-|Chart|countrydata[api data, props.filter]|Infoboard|
+|App|header, `routes`|none|
+|Landing|infotext, *?map-infographics*|Layout|
+|Layout|Sidebar, Infoboard|App|
+|Sidebar|searchbar, countries[`props`]|App|
+|InfoBoard|Map, InfoCard, Chart|Layout|
+|Map|mapcontainer, geojson[`local data`, `state data`]|InfoBoard|
+|InfoCard|countrydata[`api data`, `props.filter`]|InfoBoard|
+|Chart|countrydata[`api data`, `props.filter`]|Infoboard|
 
 ### Represented data
 
@@ -41,14 +43,26 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 ### App method
 
 - Selecting country
-    - Use `ISO_A2` for unambiguity
     - Searchbar with controlled onChange listener to filter the list of selectable countries
+        - match regex
+    - *future*: radio button to select search by parameters
+        - name
+        - ISO A2
+        - ISO N3
+    - Use `ISO_A2` for unambiguity
+    - onClick sets routing country `ab` (`ISO_A2`)
+
 
 - Bounding box
     - When a country is selected, map should zoom to bbox value from geoJSON
 
 - Routing
     - App routing to be based on **ISO A2**
+    - ~~~js
+        /
+        /home
+        /:ab
+      ~~~
 
 
 ## Wireframe
@@ -80,7 +94,17 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 |Project setup||:heavy_check_mark:||
 |Planning and Wireframing||:heavy_check_mark:||
 |API quick test||:heavy_check_mark:||
-|Build core components||:heavy_check_mark:||
+|Determine core components||:heavy_check_mark:||
+|Build routes|:heavy_check_mark:|||
+|Build Navbar|:heavy_check_mark:|||
+|Build Layout component||:heavy_check_mark:||
+|Build Landing page (simple)|:heavy_check_mark:|||
+|Build country page||:heavy_check_mark:||
+|Build Sidebar||:heavy_check_mark:||
+|Build Infoboard||:heavy_check_mark:||
+|Build Map||:heavy_check_mark:||
+|Build Infocard|:heavy_check_mark:|||
+|Build Landing page (global map infographic)|:heavy_check_mark:|||
 
 
 ## Acknowledgements
