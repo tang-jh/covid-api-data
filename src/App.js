@@ -99,7 +99,7 @@
 
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { Route, Router, Switch } from "react-router";
+import { Route, Switch } from "react-router";
 import Infoboard from "./Components/Infoboard";
 import Landing from "./Components/Landing";
 import Layout from "./Components/Layout";
@@ -131,7 +131,7 @@ const App = () => {
           <Route exact path="/">
             <Landing />
           </Route>
-          <Route path="/country/:country">
+          <Route path="/country/:abbr">
             <Infoboard />
           </Route>
         </Switch>

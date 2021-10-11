@@ -13,6 +13,7 @@ import {
 import { makeStyles } from "@mui/styles";
 import { useHistory } from "react-router";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -56,14 +57,12 @@ const Layout = (props) => {
         disablePadding
         onClick={() => history.push(`/country/${item.isoA2}`)}
       >
-        <ListItemButton>
+        <ListItemButton component={Link} to={`/country/${item.isoA2}`}>
           <ListItemText primary={item.country} />
         </ListItemButton>
       </ListItem>
     );
   });
-
-  console.log(getList(props.appdata));
 
   return (
     <>
