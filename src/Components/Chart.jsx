@@ -55,12 +55,7 @@ const Chart = () => {
         dataKey="confirmed"
         stroke={"#8884d8"}
       />
-      <Line
-        type="monotone"
-        data={deathsData}
-        dataKey="deaths"
-        stroke={"#ff0000"}
-      />
+
       <XAxis dataKey="date" />
       <YAxis />
       <Tooltip />

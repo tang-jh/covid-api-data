@@ -23,7 +23,6 @@ const Map = () => {
     return (
       <div id="map">
         <MapContainer
-          //   center={[100.29027, 103.851959]}
           bounds={L.geoJSON(country).getBounds()}
           zoom={2}
           scrollWheelZoom={true}

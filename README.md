@@ -58,11 +58,12 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
     - When a country is selected, map should zoom to bbox value from geoJSON
 
 - Routing
+    - 
     - App routing to be based on **ISO A2**
     - ~~~js
-        /
-        /home
-        /:ab
+        "/"
+        "/home"
+        "/country/:ab"
       ~~~
 
 
@@ -97,8 +98,8 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 |Planning and Wireframing||:heavy_check_mark:||
 |API quick test||:heavy_check_mark:||
 |Determine core components||:heavy_check_mark:||
-|Build routes|:heavy_check_mark:|||
-|Build Navbar|:heavy_check_mark:|||
+|Build routes||:heavy_check_mark:||
+|Build Navbar||:heavy_check_mark:||
 |Build Layout component||:heavy_check_mark:||
 |Build Landing page (simple)|:heavy_check_mark:|||
 |Build country page||:heavy_check_mark:||
