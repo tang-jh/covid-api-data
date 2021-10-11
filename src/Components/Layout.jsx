@@ -41,12 +41,14 @@ const Layout = (props) => {
 
   const getList = (obj) => {
     const arr = [];
+    
     for (const k in obj) {
-      arr.push({
-        country: k,
-        isoA2: obj?.[k]?.All?.abbreviation,
-        isoN3: obj?.[k]?.All?.iso,
-      });
+      if (obj[k].All.abbreviation){
+        arr.push({
+          country: k,
+          isoA2: obj[k].All.abbreviation,
+          isoN3: obj[k].All.iso,
+        })};
     }
     return arr;
   };

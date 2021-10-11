@@ -1,11 +1,11 @@
 import React from "react";
 import Infocard from "./Infocard";
-import Map from "./Map";
 import Chart from "./Chart";
 import { Grid } from "@mui/material";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import urlcat from "urlcat";
+import Map from "./Map";
 
 // const BASEURL = `https://covid-api.mmediagroup.fr/v1/`;
 
