@@ -7,8 +7,8 @@ import { Typography } from '@mui/material'
 const BASEURL = `https://covid-api.mmediagroup.fr/v1/`;
 
 
-const Infocard = () => {
-  const {abbr} = useParams();
+const Infocard = (props) => {
+  const abbr = props.params
   const [status, setStatus] = useState("idle");
   const [cardData, setCardData] = useState();
 

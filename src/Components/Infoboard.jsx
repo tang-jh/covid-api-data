@@ -10,7 +10,7 @@ import urlcat from "urlcat";
 // const BASEURL = `https://covid-api.mmediagroup.fr/v1/`;
 
 const Infoboard = () => {
-  const params = useParams();
+  const {abbr} = useParams();
   
 //   console.log("Infoboard params", useParams());
 //   const [status, setStatus] = useState("idle");
@@ -63,15 +63,15 @@ const Infoboard = () => {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <Map params={params}/>
+          <Map params={abbr} />
         </Grid>
         <Grid item xs={12} md={6}>
-          <Infocard />
+          <Infocard params={abbr} />
         </Grid>
       </Grid>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Chart />
+          <Chart params={abbr} />
         </Grid>
       </Grid>
     </>
