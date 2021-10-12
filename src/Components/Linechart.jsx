@@ -11,32 +11,16 @@ import {
 import { format } from "date-fns";
 import { Button, CircularProgress } from "@mui/material";
 import urlcat from "urlcat";
-import { Box } from "@mui/system";
 
-const BASEURL = `https://covid-api.mmediagroup.fr/v1/`; //?status=confirmed
+const BASEURL = `https://covid-api.mmediagroup.fr/v1/`;
 const CONFIRMED = "confirmed";
 const DEATHS = "deaths";
 
-const Chart = (props) => {
-  // `https://covid-api.mmediagroup.fr/v1/history?status=confirmed&ab=sg`;
-
-  // const fetchData = async (APIURL, stateSet, valName) => {
-  //   setStatus("pending");
-  //   try {
-  //     const res = await fetch(APIURL);
-  //     const json = await res.json();
-  //     setStatus("resolved");
-  //     stateSet(formatData(json.All.dates, valName));
-  //   } catch (error) {
-  //     setStatus("error");
-  //   }
-  // };
+const Linechart = (props) => {
   const abbr = props.params;
   const [chartData, setChartData] = useState();
   const [category, setCategory] = useState("deaths");
   const [status, setStatus] = useState("idle");
-  const [chartKey, setChartKey] = useState(0);
-
 
   const fetchData = async (url, category) => {
     setStatus("pending");
@@ -73,12 +57,6 @@ const Chart = (props) => {
     return dataArr;
   };
 
-  const handleClick = (category) => {
-    setCategory(category);
-    // setChartKey(chartKey===0?1:0);
-  }
-
-  // key = { chartKey };
   return (
     <>
       <div
@@ -86,9 +64,9 @@ const Chart = (props) => {
           status !== "pending" ? { display: "block" } : { display: "none" }
         }
       >
-        <Button onClick={() => handleClick(CONFIRMED)}>Confirmed</Button>
-        <Button onClick={() => handleClick(DEATHS)}>Deaths</Button>
-        <ResponsiveContainer width="50%" height={300}>
+        <Button onClick={() => setCategory(CONFIRMED)}>Confirmed</Button>
+        <Button onClick={() => setCategory(DEATHS)}>Deaths</Button>
+        <ResponsiveContainer width="100%" height={300}>
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" />
             <Line
@@ -109,4 +87,4 @@ const Chart = (props) => {
   );
 };
 
-export default Chart;
+export default Linechart;

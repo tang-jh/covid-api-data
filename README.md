@@ -94,22 +94,22 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 
 |Task|Not started|In-progress|Completed|
 |----|:---------:|:---------:|:-------:|
-|Project setup||:heavy_check_mark:||
-|Planning and Wireframing||:heavy_check_mark:||
-|API quick test||:heavy_check_mark:||
-|Determine core components||:heavy_check_mark:||
-|Build routes||:heavy_check_mark:||
+|Project setup|||:heavy_check_mark:|
+|Planning and Wireframing|||:heavy_check_mark:|
+|API quick test|||:heavy_check_mark:|
+|Determine core components|||:heavy_check_mark:|
+|Build routes|||:heavy_check_mark:|
+|Build Infoboard|||:heavy_check_mark:|
+|Build Map|||:heavy_check_mark:|
+|Build Chart (history linechart)|||:heavy_check_mark:|
+|Build Chart (vaccination piechart)|||:heavy_check_mark:|
 |Build Navbar||:heavy_check_mark:||
 |Build Layout component||:heavy_check_mark:||
 |Build Landing page (simple)|:heavy_check_mark:|||
 |Build country page||:heavy_check_mark:||
 |Build Sidebar||:heavy_check_mark:||
-|Build Infoboard||:heavy_check_mark:||
-|Build Map||:heavy_check_mark:||
 |Build Infocard||:heavy_check_mark:||
 |Build Landing page (global map infographic)|:heavy_check_mark:|||
-|Build Chart (history linechart)||:heavy_check_mark:||
-|Build Chart (vaccination piechart)|:heavy_check_mark:|||
 |Localisation|:heavy_check_mark:|||
 
 

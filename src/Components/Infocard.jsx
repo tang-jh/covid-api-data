@@ -40,7 +40,7 @@ const Infocard = (props) => {
           status !== "pending" ? { display: "block" } : { display: "none" }
         }
       >
-        <Typography variant="h5">{cardData?.All?.country}</Typography>
+        <Typography variant="h4">{cardData?.All?.country}</Typography>
         <p>ISO A2: {cardData?.All?.abbreviation}</p>
         <p>ISO N3: {cardData?.All?.iso}</p>
         <p>Population: {cardData?.All?.population}</p>
