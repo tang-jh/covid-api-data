@@ -1,9 +1,9 @@
-import React from "react";
-import { MapContainer, TileLayer, Popup, GeoJSON } from "react-leaflet";
+import React, { useState, useEffect } from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 import L from "leaflet";
 import geodata from "../Data/50m_admin0";
-import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+
 
 let polylayer;
 
@@ -11,6 +11,7 @@ const Map = (props) => {
   const { abbr } = useParams();
   const [mapData, setMapData] = useState();
   const [map, setMap] = useState(null);
+
 
   console.log("Map params", abbr);
 
@@ -42,11 +43,6 @@ const Map = (props) => {
   // console.log("bbox", L.geoJSON(country).getBounds());
   // console.log("geodata", geodata);
   // console.log("geodata", geodata.features);
-
-  const bbox = (geoObj) => {
-    console.log(geoObj);
-    L.geoJSON(geoObj).getBounds();
-  };
 
   return (
     <div id="map">
