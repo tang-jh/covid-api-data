@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
 import L from "leaflet";
 import geodata from "../Data/10m_admin_0";
 import urlcat from "urlcat";
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, CircularProgress, Grid, Typography } from "@mui/material";
+import { useHistory } from "react-router";
 
 let countryPoly;
 const BASEURL = `https://covid-api.mmediagroup.fr/v1`;
@@ -18,6 +19,7 @@ const Landing = () => {
   const [vaccinesData, setVaccinesData] = useState([]);
   const [historyData, setHistoryData] = useState([]);
   const [overlay, setOverlay] = useState([]);
+  const history = useHistory();
 
   const fetchData = async (category, setMethod) => {
     setStatus("pending");
@@ -98,20 +100,6 @@ const Landing = () => {
     const arr = [];
     let item = {};
     for (const f of geoFeatures) {
-      // for (const v of vaccinesData) {
-      //   if (f.properties.ISO_A2 === v.isoA2) {
-      //     item = {
-      //       ...f,
-      //       properties: {
-      //         ...f.properties,
-      //         vaccinated: v.vaccinated,
-      //         percent_vaccinated: v.percent_vaccinated,
-      //       },
-      //     };
-      //     // arr.push(item);
-      //     // item = {};
-      //   }
-      // }
       for (const h of historyData) {
         if (f.properties.ISO_A2 === h.isoA2) {
           item = {
@@ -129,28 +117,14 @@ const Landing = () => {
         }
       }
     }
-    // for (const c of casesData) {
-    //   if (f.properties.ISO_A2 === c.isoA2) {
-    //     console.log("f.properties.ISO_A2", f.properties.ISO_A2);
-    //     item = {
-    //       ...f,
-    //       properties: {
-    //         ...f.properties,
-    //         confirmed: c.confirmed,
-    //         confirmed_index: c.confirmed / c.population,
-    //         deaths: c.deaths,
-    //         deaths_index: c.deaths/c.population,
-    //         population: c.population,
-    //       },
-    //     };
-    //   }
     console.log("ProcessGeoData", arr);
     return arr;
   };
 
   const polyStyle = (currmax) => (feature) => {
     return {
-      fillOpacity: feature.properties.fivedays/currmax ,
+      fillOpacity: feature.properties.fivedays / currmax,
+      color: "#d5b23f",
     };
   };
 
@@ -164,6 +138,7 @@ const Landing = () => {
       layer.bindPopup(`Cases in five days ${feature.properties.fivedays}`);
       layer.on("mouseover", (e)=>{e.target.openPopup()});
       layer.on("mouseout", (e)=>{e.target.closePopup()});
+      layer.on("click", ()=>{history.push(`country/${feature.properties.ISO_A2}`)})
     }
   }
 
@@ -198,7 +173,13 @@ const Landing = () => {
       <Typography gutterBottom={true} align="center" variant="h5">
         Global Statistics on COVID-19
       </Typography>
-      <Grid container justifyContent="center">
+      <Grid
+        container
+        justifyContent="center"
+        style={
+          status !== "pending" ? { display: "flex" } : { display: "none" }
+        }
+      >
         <MapContainer
           id="landing-map"
           center={[12.24, 1.56]}
@@ -212,6 +193,7 @@ const Landing = () => {
           />
         </MapContainer>
       </Grid>
+      {status === "pending" ? <CircularProgress /> : null}
     </div>
   );
 };
