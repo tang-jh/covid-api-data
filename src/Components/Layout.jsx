@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Drawer,
@@ -8,6 +8,7 @@ import {
   ListItemButton,
   ListItemText,
   Divider,
+  CircularProgress,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useHistory, useLocation } from "react-router";
@@ -15,6 +16,7 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
+
 const useStyles = makeStyles((theme) => ({
   content: {
     background: "#f9f9f9",
@@ -33,18 +35,47 @@ const useStyles = makeStyles((theme) => ({
     margin: "1rem",
   },
   active: {
-    background:"#f3f3f3"
-  }
+    background: "#dbf3fa",
+  },
 }));
+
+const COVID_API_CASES = `https://covid-api.mmediagroup.fr/v1/cases`;
 
 const Layout = (props) => {
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
 
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [appdata, setAppData] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = (async () => {
+      setStatus("pending");
+      try {
+        const res = await fetch(COVID_API_CASES);
+        const json = await res.json();
+        setStatus("resolved");
+        setAppData(getList(json));
+      } catch (error) {
+        setStatus("error");
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+      setFilteredList(
+        appdata.filter((item) =>
+          item.country.toLowerCase().includes(search.toLowerCase())
+        )
+      );
+
+  }, [search, appdata]);
+
   const getList = (obj) => {
     const arr = [];
-
     for (const k in obj) {
       if (obj[k].All.abbreviation) {
         arr.push({
@@ -57,13 +88,15 @@ const Layout = (props) => {
     return arr;
   };
 
-  const listItems = getList(props.appdata).map((item) => {
+  const listItems = filteredList.map((item) => {
     return (
       <ListItem
         key={item.isoA2}
         disablePadding
         onClick={() => history.push(`/country/${item.isoA2}`)}
-        className={location.pathname === `/country/${item.isoA2}` ? classes.active: null}
+        className={
+          location.pathname === `/country/${item.isoA2}` ? classes.active : null
+        }
       >
         <ListItemButton component={Link} to={`/country/${item.isoA2}`}>
           <ListItemText primary={item.country} />
@@ -72,9 +105,14 @@ const Layout = (props) => {
     );
   });
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    console.log(search);
+  };
+
   return (
     <>
-      <Navbar />
+      <Navbar changeHandler={handleSearch} />
       <Box>
         <div className={classes.root}>
           <Drawer
@@ -89,7 +127,7 @@ const Layout = (props) => {
               </Typography>
             </div>
             <Divider />
-            <List>{listItems}</List>
+            <List>{status==="pending"? <CircularProgress /> : listItems}</List>
           </Drawer>
           <div className={classes.content}>{props.children}</div>
         </div>

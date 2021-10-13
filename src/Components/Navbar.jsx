@@ -1,9 +1,9 @@
-import * as React from "react";
+import React, {useState, useEffect} from "react";
 import {AppBar, Box, Toolbar, Typography, Button, TextField} from "@mui/material";
 import { Link } from "react-router-dom";
 
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky">
@@ -12,7 +12,8 @@ export default function Navbar() {
             id="searchbar"
             label="Filter country"
             variant="outlined"
-            sx={{ background: "#EDEDFF", ml: 28}}
+            sx={{ background: "#EDEDFF", ml: 28 }}
+            onChange={props.changeHandler}
           />
           <Typography
             align="center"
