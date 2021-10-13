@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import L from "leaflet";
-import geodata from "../Data/50m_admin0";
+import geodata from "../Data/10m_admin_0";
 import { useParams } from "react-router";
 
 let polylayer;
@@ -34,12 +34,11 @@ const Map = () => {
       map.removeLayer(polylayer);
     }
     polylayer = L.geoJSON(mapData, { style: { color: "#ff6d00" } }).addTo(map);
-    console.log("MAP", map);
   }, [mapData, map]);
 
   return (
-    <div id="map">
-      <MapContainer zoom={2} scrollWheelZoom={true} whenCreated={setMap}>
+    <div>
+      <MapContainer id="country-map" zoom={2} scrollWheelZoom={true} whenCreated={setMap}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"

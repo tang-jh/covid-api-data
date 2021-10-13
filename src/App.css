@@ -1,8 +1,16 @@
-.leaflet-container{
+/* .leaflet-container{
   height: 40vh;
-  /* width: 500px; */
-}
+  width: 500px;
+} */
 
 .leaflet-tile-pane {
   filter: grayscale(1);
+}
+
+#country-map{
+  height: 40vh;
+}
+
+#landing-map{
+  height: 80vh;
 }
