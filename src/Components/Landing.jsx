@@ -125,6 +125,7 @@ const Landing = () => {
     return {
       fillOpacity: feature.properties.fivedays / currmax,
       color: "#d5b23f",
+      weight: 1
     };
   };
 
@@ -135,7 +136,7 @@ const Landing = () => {
 
   const onEachFeature = (feature, layer) => {
     if (feature.properties.fivedays) {
-      layer.bindPopup(`Cases in five days ${feature.properties.fivedays}`);
+      layer.bindPopup(`Cases in past five days <br/> <strong>${feature.properties.fivedays}</strong>`);
       layer.on("mouseover", (e)=>{e.target.openPopup()});
       layer.on("mouseout", (e)=>{e.target.closePopup()});
       layer.on("click", ()=>{history.push(`country/${feature.properties.ISO_A2}`)})
