@@ -1,4 +1,4 @@
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 import { textAlign } from "@mui/system";
 import React, { useState, useEffect } from "react";
 import {
@@ -44,7 +44,7 @@ const Piechart = (props) => {
     <>
       <div
         style={
-          status !== "pending" ? { display: "block" } : { display: "none" }
+          status === "resolved" ? { display: "block" } : { display: "none" }
         }
       >
         <ResponsiveContainer width="100%" height={300}>
@@ -68,13 +68,25 @@ const Piechart = (props) => {
         <p style={{ textAlign: "center" }}>
           Percent vaccinated:{" "}
           {(
-            (chartData?.[0]?.value / (chartData?.[1]?.value + chartData?.[0]?.value)) *
+            (chartData?.[0]?.value /
+              (chartData?.[1]?.value + chartData?.[0]?.value)) *
             100
           ).toFixed(1)}
           %
         </p>
       </div>
-      {status === "pending" ? <CircularProgress /> : null}
+      {status === "pending" ? (
+        <Grid container justifyContent="center">
+          <Grid item>
+            <CircularProgress />
+          </Grid>
+        </Grid>
+      ) : null}
+      {status === "error" ? (
+        <Grid container justifyContent="center">
+          <Grid item> No data</Grid>
+        </Grid>
+      ) : null}
     </>
   );
 };

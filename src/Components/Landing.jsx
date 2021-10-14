@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
 import L from "leaflet";
-import geodata from "../Data/10m_admin_0";
+import geodata from "../Data/50m_admin_0";
 import urlcat from "urlcat";
 import { Button, CircularProgress, Grid, Typography } from "@mui/material";
 import { useHistory } from "react-router";
@@ -93,8 +93,6 @@ const Landing = () => {
         return obj;
     }
   };
-
-  console.log(geodata.features[3]);
 
   const processGeodata = (geoFeatures) => {
     const arr = [];

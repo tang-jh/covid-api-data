@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from "recharts";
 import { format } from "date-fns";
-import { Button, CircularProgress } from "@mui/material";
+import { Button, CircularProgress, Grid } from "@mui/material";
 import urlcat from "urlcat";
 
 const BASEURL = `https://covid-api.mmediagroup.fr/v1/`;
@@ -39,10 +39,6 @@ const Linechart = (props) => {
       urlcat(BASEURL, `/history`, { ab: abbr, status: category }),
       category
     );
-    console.log(
-      "Chart url",
-      urlcat(BASEURL, `/history`, { ab: abbr, status: category })
-    );
   }, [abbr, category]);
 
   const formatData = (data, valName) => {
@@ -61,7 +57,7 @@ const Linechart = (props) => {
     <>
       <div
         style={
-          status !== "pending" ? { display: "block" } : { display: "none" }
+          status === "resolved" ? { display: "block" } : { display: "none" }
         }
       >
         <Button onClick={() => setCategory(CONFIRMED)}>Confirmed</Button>
@@ -82,7 +78,18 @@ const Linechart = (props) => {
           </LineChart>
         </ResponsiveContainer>
       </div>
-      {status === "pending" ? <CircularProgress /> : null}
+      {status === "pending" ? (
+        <Grid container alignItems="center" justifyContent="center">
+          <Grid item>
+            <CircularProgress />
+          </Grid>
+        </Grid>
+      ) : null}
+      {status === "error" ? (
+        <Grid container alignItems="center" justifyContent="center">
+          <Grid item> No data</Grid>
+        </Grid>
+      ) : null}
     </>
   );
 };

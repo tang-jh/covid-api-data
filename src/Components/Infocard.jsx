@@ -2,7 +2,7 @@ import React from "react";
 import urlcat from "urlcat";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { CircularProgress, Typography } from "@mui/material";
+import { CircularProgress, Grid, Typography } from "@mui/material";
 
 const BASEURL = `https://covid-api.mmediagroup.fr/v1/`;
 
@@ -37,7 +37,7 @@ const Infocard = (props) => {
     <>
       <div
         style={
-          status !== "pending" ? { display: "block" } : { display: "none" }
+          status === "resolved" ? { display: "block" } : { display: "none" }
         }
       >
         <Typography variant="h4">{cardData?.All?.country}</Typography>
@@ -54,7 +54,18 @@ const Infocard = (props) => {
             : cardData?.All?.updated}
         </p>
       </div>
-      {status === "pending" ? <CircularProgress /> : null}
+      {status === "pending" ? (
+        <Grid container justifyContent="center">
+          <Grid item>
+            <CircularProgress />
+          </Grid>
+        </Grid>
+      ) : null}
+      {status === "error" ? (
+        <Grid container justifyContent="center">
+          <Grid item> No data</Grid>
+        </Grid>
+      ) : null}
     </>
   );
 };

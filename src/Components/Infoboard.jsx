@@ -11,7 +11,7 @@ const Infoboard = () => {
 
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid container justifyContent="center" alignItems="center" spacing={3}>
         <Grid item xs={12} lg={6}>
           <Map params={abbr} />
         </Grid>
@@ -19,7 +19,7 @@ const Infoboard = () => {
           <Infocard params={abbr} />
         </Grid>
       </Grid>
-      <Grid container spacing={3}>
+      <Grid container justifyContent="center" alignItems="center" spacing={3}>
         <Grid item xs={12} lg={6}>
           <Linechart params={abbr} />
         </Grid>
