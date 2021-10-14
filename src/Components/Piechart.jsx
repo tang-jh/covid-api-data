@@ -1,11 +1,10 @@
 import { CircularProgress, Grid } from "@mui/material";
-import { textAlign } from "@mui/system";
+import numbro from "numbro";
 import React, { useState, useEffect } from "react";
 import {
   PieChart,
   Pie,
   Cell,
-  Legend,
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
@@ -62,7 +61,11 @@ const Piechart = (props) => {
               <Cell key={0} fill="#4999A3" />
               <Cell key={1} fill="#F0B384" />
             </Pie>
-            <Tooltip />
+            <Tooltip
+              formatter={(value) =>
+                numbro(value).format({ thousandSeparated: true })
+              }
+            />
           </PieChart>
         </ResponsiveContainer>
         <p style={{ textAlign: "center" }}>

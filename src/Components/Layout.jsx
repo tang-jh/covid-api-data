@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   content: {
     background: "#f9f9f9",
     width: "100%",

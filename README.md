@@ -90,6 +90,9 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 
 ### Future Features
 
+- Global heatmap showing recent confirmed cases
+- Landing page with interactive global map, also to be used for navigation 
+
 ### Progress
 
 |Task|Not started|In-progress|Completed|
@@ -109,7 +112,7 @@ This application fetches data from [Covid-19-API](https://github.com/M-Media-Gro
 |Build Sidebar|||:heavy_check_mark:|
 |Build Infocard||:heavy_check_mark:||
 |Build Landing page (global map infographic)|||:heavy_check_mark:|
-|Localisation|:heavy_check_mark:|||
+|Better formatting|||:heavy_check_mark:|
 
 
 ## Acknowledgements

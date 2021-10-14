@@ -11,6 +11,7 @@ import {
 import { format } from "date-fns";
 import { Button, CircularProgress, Grid } from "@mui/material";
 import urlcat from "urlcat";
+import numbro from "numbro";
 
 const BASEURL = `https://covid-api.mmediagroup.fr/v1/`;
 const CONFIRMED = "confirmed";
@@ -53,6 +54,18 @@ const Linechart = (props) => {
     return dataArr;
   };
 
+  const axisFormatter = (value) => {
+    if (value > 1000000000) {
+      return (value / 1000000000).toString() + "B";
+    } else if (value > 1000000) {
+      return (value / 1000000).toString() + "M";
+    } else if (value > 1000) {
+      return (value / 1000).toString() + "K";
+    } else {
+      return value.toString();
+    }
+  }
+
   return (
     <>
       <div
@@ -73,8 +86,8 @@ const Linechart = (props) => {
               dot={false}
             />
             <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
+            <YAxis tickFormatter={axisFormatter}/>
+            <Tooltip formatter={(value)=>numbro(value).format({thousandSeparated:true})} />
           </LineChart>
         </ResponsiveContainer>
       </div>

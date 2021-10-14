@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import L from "leaflet";
 import geodata from "../Data/50m_admin_0";
 import urlcat from "urlcat";
-import { Button, CircularProgress, Grid, Typography } from "@mui/material";
+import { CircularProgress, Grid, Typography } from "@mui/material";
 import { useHistory } from "react-router";
 
 let countryPoly;
@@ -142,8 +142,8 @@ const Landing = () => {
   }
 
   useEffect(() => {
-    fetchData(CASES, setCasesData);
-    fetchData(VACCINES, setVaccinesData);
+    // fetchData(CASES, setCasesData);
+    // fetchData(VACCINES, setVaccinesData);
     fetchData(HISTORY, setHistoryData);
   }, []);
 
@@ -175,9 +175,7 @@ const Landing = () => {
       <Grid
         container
         justifyContent="center"
-        style={
-          status !== "pending" ? { display: "flex" } : { display: "none" }
-        }
+        style={status !== "pending" ? { display: "flex" } : { display: "none" }}
       >
         <MapContainer
           id="landing-map"
@@ -192,7 +190,18 @@ const Landing = () => {
           />
         </MapContainer>
       </Grid>
-      {status === "pending" ? <CircularProgress /> : null}
+      {status === "pending" ? (
+        <Grid container justifyContent="center">
+          <Grid item>
+            <CircularProgress />
+          </Grid>
+        </Grid>
+      ) : null}
+      {status === "error" ? (
+        <Grid container justifyContent="center">
+          <Grid item> Error fetching data. Try reloading the page</Grid>
+        </Grid>
+      ) : null}
     </div>
   );
 };

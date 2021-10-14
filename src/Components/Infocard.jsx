@@ -1,15 +1,25 @@
 import React from "react";
 import urlcat from "urlcat";
-import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { CircularProgress, Grid, Typography } from "@mui/material";
+import numbro from "numbro";
+import format from "date-fns/format";
+import {makeStyles} from "@mui/styles"
 
 const BASEURL = `https://covid-api.mmediagroup.fr/v1/`;
 
+const useStyles = makeStyles(() => ({
+  dataVal: {
+    color: "#17517e",
+  },
+}));
+
 const Infocard = (props) => {
   const abbr = props.params;
+  const classes = useStyles();
   const [status, setStatus] = useState("idle");
   const [cardData, setCardData] = useState();
+  const [lastUpdated, setLastUpdated] = useState();
 
   console.log("Map params", abbr);
 
@@ -22,6 +32,7 @@ const Infocard = (props) => {
         console.log("InfoCard", json);
         setStatus("resolved");
         setCardData(json);
+        setLastUpdated(json.All.updated === undefined ? json[getNextAttr(json)].updated : json.All.updated);
       } catch (error) {
         setStatus("error");
       }
@@ -41,17 +52,37 @@ const Infocard = (props) => {
         }
       >
         <Typography variant="h4">{cardData?.All?.country}</Typography>
-        <p>ISO A2: {cardData?.All?.abbreviation}</p>
-        <p>ISO N3: {cardData?.All?.iso}</p>
-        <p>Population: {cardData?.All?.population}</p>
         <p>
-          Area: {cardData?.All?.sq_km_area} km<sup>2</sup>
+          ISO A2:{" "}
+          <span className={classes.dataVal}>{cardData?.All?.abbreviation}</span>
+        </p>
+        <p>
+          ISO N3: <span className={classes.dataVal}>{cardData?.All?.iso}</span>
+        </p>
+        <p>
+          Population:{" "}
+          <span className={classes.dataVal}>
+            {numbro(cardData?.All?.population).format({
+              thousandSeparated: true,
+            })}
+          </span>
+        </p>
+        <p>
+          Area:{" "}
+          <span className={classes.dataVal}>
+            {numbro(cardData?.All?.sq_km_area).format({
+              thousandSeparated: true,
+            })}{" "}
+            km<sup>2</sup>
+          </span>
         </p>
         <p>
           Data last updated:{" "}
-          {cardData?.All?.updated === undefined
-            ? cardData?.[getNextAttr(cardData)]?.updated
-            : cardData?.All?.updated}
+          <span className={classes.dataVal}>
+            {lastUpdated
+              ? format(new Date(lastUpdated), "cccc, dd MMM yyyy")
+              : "waiting"}
+          </span>
         </p>
       </div>
       {status === "pending" ? (
